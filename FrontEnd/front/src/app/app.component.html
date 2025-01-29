@@ -1,0 +1,30 @@
+<!-- Campo de entrada para ingresar la cédula del usuario -->
+<div>
+  <input [(ngModel)]="cedula" type="text" placeholder="Ingrese su cédula" required pattern="[0-9]{10}">
+  <button (click)="consultar()">Consultar</button>
+</div>
+
+<!-- Mensaje de error que se muestra si existe algún problema -->
+<div *ngIf="error" class="error">
+  {{ error }}
+</div>
+
+<!-- Tabla que muestra los datos del usuario si están disponibles -->
+<table *ngIf="usuarioData" class="tabla-usuario">
+  <thead>
+    <tr>
+      <th>Cédula</th>
+      <th>Nombre</th>
+      <th>Consumo</th>
+      <th>Deuda Pendiente</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ usuarioData.cedula }}</td>
+      <td>{{ usuarioData.nombre }}</td>
+      <td>{{ usuarioData.consumo | number:'1.2-2' }} kWh</td> <!-- Formato de número -->
+      <td>{{ usuarioData.deudaPendiente | currency:'USD' }}</td> <!-- Formato de moneda -->
+    </tr>
+  </tbody>
+</table>

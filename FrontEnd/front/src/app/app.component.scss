@@ -1,0 +1,33 @@
+/* Estilos para la tabla */
+.tabla-usuario {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .tabla-usuario th,
+  .tabla-usuario td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  
+  .tabla-usuario th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+  }
+  
+  .tabla-usuario tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .tabla-usuario tr:hover {
+    background-color: #e2e2e2;
+  }
+  
+  .error {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
