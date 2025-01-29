@@ -22,34 +22,21 @@ export class UserService {
     ); // Realiza una solicitud GET a la API
   }
 
+  get(cedula: string): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}/${cedula}`);
+  }
+
   // Crear un nuevo usuario
-  createUser(user: User): Observable<User> {
-    return this.http.post<User>(this.apiUrl, user).pipe(
-      catchError(error => {
-        console.error('Error al crear usuario:', error);
-        return throwError(() => new Error('Error al crear usuario'));
-      })
-    );
+  createUser(user: User): Observable<string> {
+    return this.http.post<string>(this.apiUrl, user);
   }
 
-  // Actualizar usuario existente
-  updateUser(cedula: string, user: User): Observable<User> {
-    return this.http.put<User>(`${this.apiUrl}/${cedula}`, user).pipe(
-      catchError(error => {
-        console.error('Error al actualizar usuario:', error);
-        return throwError(() => new Error('Error al actualizar usuario'));
-      })
-    );
+  updateUser(cedula: string, user: User): Observable<string> {
+    return this.http.put<string>(`${this.apiUrl}/${cedula}`, user);
   }
 
-  // Eliminar usuario por cédula
   deleteUser(cedula: string): Observable<string> {
-    return this.http.delete<string>(`${this.apiUrl}/${cedula}`).pipe(
-      catchError(error => {
-        console.error('Error al eliminar usuario:', error);
-        return throwError(() => new Error('Error al eliminar usuario'));
-      })
-    );
+    return this.http.delete<string>(`${this.apiUrl}/${cedula}`);
   }
   
 }

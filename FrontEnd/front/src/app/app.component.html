@@ -28,3 +28,24 @@
     </tr>
   </tbody>
 </table>
+
+<div>
+  <h2>Gestión de Usuarios</h2>
+  
+  <input [(ngModel)]="usuario.cedula" type="text" placeholder="Cédula">
+  <input [(ngModel)]="usuario.nombre" type="text" placeholder="Nombre">
+  <input [(ngModel)]="usuario.consumo" type="number" placeholder="Consumo">
+  <input [(ngModel)]="usuario.deudaPendiente" type="number" placeholder="Deuda Pendiente">
+  
+  <button (click)="crearUsuario()">Crear Usuario</button>
+  <button (click)="actualizarUsuario()">Actualizar Usuario</button>
+  <button (click)="eliminarUsuario()">Eliminar Usuario</button>
+
+  <table *ngIf="usuarioData">
+    <tr><th>Cédula</th><td>{{ usuarioData.cedula }}</td></tr>
+    <tr><th>Nombre</th><td>{{ usuarioData.nombre }}</td></tr>
+    <tr><th>Consumo</th><td>{{ usuarioData.consumo }}</td></tr>
+    <tr><th>Deuda Pendiente</th><td>{{ usuarioData.deudaPendiente }}</td></tr>
+  </table>
+</div>
+

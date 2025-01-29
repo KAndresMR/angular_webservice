@@ -1,5 +1,6 @@
+com/jakarta/services/UserService.class
+com/jakarta/dao/UserDAO.class
+com/jakarta/services/CORSFilter.class
 com/jakarta/models/User.class
 com/jakarta/services/PathBase.class
-com/jakarta/services/UserService.class
 com/jakarta/App.class
-com/jakarta/services/CORSFilter.class

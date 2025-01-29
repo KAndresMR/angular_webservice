@@ -15,11 +15,25 @@ import { User } from './models/user.model';
 export class AppComponent {
   title = 'front';
 
+  usuario: User = { cedula: '', nombre: '', consumo: 0, deudaPendiente: 0 };
+  cedulaBuscar: string = '';
   cedula: string = ''; // Cédula ingresada por el usuario
   usuarioData: any = null; // Datos del usuario obtenidos del servicio
   error: string | null = ''; // Mensaje de error en caso de fallo
 
   constructor(private userService: UserService) { }
+
+  crearUsuario() {
+    this.userService.createUser(this.usuario).subscribe();
+  }
+
+  actualizarUsuario() {
+    this.userService.updateUser(this.usuario.cedula, this.usuario).subscribe();
+  }
+
+  eliminarUsuario() {
+    this.userService.deleteUser(this.usuario.cedula).subscribe();
+  }
 
   consultar() {
     if (!this.cedula || this.cedula.trim() === '') {
@@ -40,36 +54,14 @@ export class AppComponent {
     });
   }
 
-  crearUsuario() {
-    const nuevoUsuario: User = {
-      cedula: this.cedula,
-      nombre: "Usuario Prueba",
-      consumo: 250.5,
-      deudaPendiente: 90.0
-    };
-
-    this.userService.createUser(nuevoUsuario).subscribe(
-      (data) => alert("Usuario creado exitosamente"),
-      (err) => alert("Error al crear usuario: " + err.message)
-    );
+  get() { 
+    this.userService.get(this.cedula).subscribe(data => {
+      this.usuarioData = data;
+    });
   }
 
-  actualizarUsuario() {
-    if (!this.usuarioData) return;
 
-    this.usuarioData.nombre = "Nombre actualizado";
-    this.userService.updateUser(this.cedula, this.usuarioData).subscribe(
-      (data) => alert("Usuario actualizado"),
-      (err) => alert("Error al actualizar usuario: " + err.message)
-    );
-  }
 
-  eliminarUsuario() {
-    this.userService.deleteUser(this.cedula).subscribe(
-      (msg) => alert("Usuario eliminado"),
-      (err) => alert("Error al eliminar usuario: " + err.message)
-    );
-  }
 
   
 }
